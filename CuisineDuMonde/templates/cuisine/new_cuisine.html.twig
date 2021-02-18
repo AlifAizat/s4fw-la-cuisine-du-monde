@@ -1,0 +1,115 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cuisine Du Monde{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/content_block.css') }}">
+    <style>
+        @font-face {
+            font-family: ambit-Black;
+            src: url({{ asset('css/font/Ambit/Ambit-Light.otf') }});
+        }
+
+        *{
+            font-family: ambit-Black;
+        }
+
+        ._inputLabel{
+            width: 100%;
+        }
+
+        #img_input{
+            max-height: 300px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <br>
+    <div class="container content_block">
+
+        <br>
+        <h1>Déposer une nouvelle recette</h1>
+
+        <h5>Utilisez ce formulaire pour sauvegarder et partager vos recettes avec votre famille, vos amis et les autres
+            membres de CuisineDuMonde. Essayez d'être précis et clair pour que tous nos utilisateurs puissent réaliser votre
+            recette sans problème !</h5>
+        <br>
+
+        <div class="container content_block_l1">
+            <div class="container content_block_l2">
+                <div class="container content_block_l3">
+
+
+                    {{ form_start(new_cuisine, {'method':'POST'}) }}
+                    <h5>Nom de la recette</h5>
+                    {{ form_widget(new_cuisine.name, {'attr': {'class':'form-control', 'placeholder':'Nom...' }}) }}
+                    <br><br>
+
+                    <h5>La photo</h5>
+                    <img id="img_input" src="{{ asset('images/general/cuisine.png') }}" alt="photo">
+                    <br><br>
+                    {{ form_widget(new_cuisine.image, {'attr': {'class':'form-control-file', 'accept':'.jpg,.png,.jpeg', 'onchange':'readImageURL(this);'}}) }}
+                    <br><br>
+
+                    <h5>L'origine de cuisine</h5>
+                    {{ form_widget(new_cuisine.category,{'attr': {'class':'form-control' }}) }}
+                    <br><br>
+
+                    <h5>Le type de plat</h5>
+                    {{ form_widget(new_cuisine.course,{'attr': {'class':'form-control' }}) }}
+                    <br><br>
+
+                    <h5>Des ingrédients</h5>
+                    {#{ form_widget(new_cuisine.ingredients) }#}
+                    <div class="row" id="addRowsIngredient">
+                        <div class="col-md-4">
+                            <div class="form-group label-floating">
+                                <label class="control-label"><kbd>Ingrédient 1</kbd></label>
+                                <input type="text" class="form-control _inputLabel" id="ingredient_1" v-model="ingredient" >
+                            </div>
+                        </div>
+                        <!-- click button add input here -->
+                    </div>
+                    <button type="button" id="clickAddIngredientInput"><i class="fas fa-plus"></i></button>
+                    <br>
+
+                    <br><br>
+
+                    <h6>Recette</h6>
+                    {#{ form_widget(new_cuisine.recipe) }#}
+                    <div class="row" id="addRowsRecipe">
+                        <div class="col-md-4">
+                            <div class="form-group label-floating">
+                                <label class="control-label"><kbd>Étape 1</kbd></label>
+                                <input type="text" class="form-control _inputLabel" id="etape_1" v-model="act" >
+                            </div>
+                        </div>
+                        <!-- click button add input here -->
+                    </div>
+                    <button type="button" id="clickAddRecipeInput"><i class="fas fa-plus"></i></button>
+                    <br><br>
+
+                    <button class="btn btn-lg btn-primary btn-block text-uppercase" id="newCuisine_button_form" type="submit" hidden>
+                        Submit!
+                    </button>
+
+                    {{ form_end(new_cuisine) }}
+
+                    <button type="submit"  class="btn btn-primary btn-block" id="newCuisine_button_grouping">Publier ma recette!</button>
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/new_cuisine.js') }}">
+
+    </script>
+{% endblock %}

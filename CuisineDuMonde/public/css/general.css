@@ -1,0 +1,27 @@
+html,
+body {
+    height: 100%;
+    background-image: url('../images/general/bg.jpg');
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+#page-content {
+    flex: 1 0 auto;
+}
+
+#login_logo{
+    /*max-width: 300px;
+    position: center;*/
+}
+
+
+
+/**
+Color hex
+https://www.color-hex.com/color-palette/88950
+ */
